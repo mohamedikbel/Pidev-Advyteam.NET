@@ -82,7 +82,7 @@ namespace web.Controllers
             }
         }
 
-        // GET: Test/Delete/5
+        
         public ActionResult Delete(int id)
         {
             HttpResponseMessage response = GlobalVariable.webApiClient.DeleteAsync("test/"+id.ToString()).Result;
