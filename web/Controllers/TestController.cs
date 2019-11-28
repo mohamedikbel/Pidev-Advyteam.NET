@@ -11,7 +11,7 @@ namespace web.Controllers
 {
     public class TestController : Controller
     {
-        // GET: Test
+        
         public ActionResult Index()
         {
 
@@ -21,7 +21,7 @@ namespace web.Controllers
             return View(testls);
         }
 
-        // GET: Test/Details/5
+       
         public ActionResult Details(int id)
         {
 
@@ -35,13 +35,13 @@ namespace web.Controllers
             return View();
         }
 
-        // GET: Test/Create
+        
         public ActionResult Create()
         {
             return View(new testview());
         }
 
-        // POST: Test/Create
+        
         [HttpPost]
         public ActionResult Create(testview t)
         {
@@ -58,7 +58,7 @@ namespace web.Controllers
             }
         }
 
-        // GET: Test/Edit/5
+        
         public ActionResult Edit(int id)
         {
             HttpResponseMessage response1 = GlobalVariable.webApiClient.GetAsync("test/" + id.ToString()).Result;
