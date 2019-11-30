@@ -14,7 +14,7 @@ namespace web.Controllers
       
 
 
-        // GET: Reponce/Create
+        
         public ActionResult Create(int id)
         {
             List<SelectListItem> lst = new List<SelectListItem>() {
@@ -62,7 +62,7 @@ namespace web.Controllers
             return View(r);
         }
 
-        // POST: Reponce/Edit/5
+        
         [HttpPost]
         public ActionResult Edit(reponceV r)
         {
@@ -79,7 +79,7 @@ namespace web.Controllers
             });
         }
 
-        // GET: Reponce/Delete/5
+        
         public ActionResult Delete(int idq, int idt)
         {
             HttpResponseMessage response = GlobalVariable.webApiClient.DeleteAsync("test/Rep/" + idq.ToString()).Result;
