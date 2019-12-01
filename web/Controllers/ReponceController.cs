@@ -29,7 +29,7 @@ namespace web.Controllers
             return View(r);
         }
 
-        // POST: Reponce/Create
+       
         [HttpPost]
         public ActionResult Create(reponceV r)
         {
@@ -46,7 +46,7 @@ namespace web.Controllers
             });
         }
 
-        // GET: Reponce/Edit/5
+       
         public ActionResult Edit(int id)
         {
            
