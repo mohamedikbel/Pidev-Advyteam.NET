@@ -13,6 +13,7 @@ namespace domain.entities
         public commentaire()
         {
             employes = new HashSet<employe>();
+            posts = new HashSet<post>();
         }
 
         public int id { get; set; }
@@ -24,5 +25,8 @@ namespace domain.entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<employe> employes { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<post> posts { get; set; }
     }
 }

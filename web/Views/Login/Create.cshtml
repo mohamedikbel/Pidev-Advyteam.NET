@@ -1,0 +1,266 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap Admin App + jQuery">
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <style type="text/css">
+        body {
+            width: 100%;
+            text-align: center;
+        }
+
+        img {
+            border: 0;
+        }
+
+        #main {
+            margin: 15px auto;
+            background: white;
+            overflow: auto;
+            width: 100%;
+        }
+
+        #header {
+            background: white;
+            margin-bottom: 15px;
+        }
+
+        #mainbody {
+            background: white;
+            width: 100%;
+        }
+
+        #footer {
+            background: white;
+        }
+
+        #v {
+            width: 320px;
+            height: 240px;
+        }
+
+        #qr-canvas {
+            display: none;
+        }
+
+        #qrfile {
+            width: 320px;
+            height: 240px;
+        }
+
+        #mp1 {
+            text-align: center;
+            font-size: 35px;
+        }
+
+        #imghelp {
+            position: relative;
+            left: 0px;
+            top: -160px;
+            z-index: 100;
+            font: 18px arial,sans-serif;
+            background: #f0f0f0;
+            margin-left: 35px;
+            margin-right: 35px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 20px;
+        }
+
+        .selector {
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+            margin-bottom: -5px;
+        }
+
+        #outdiv {
+            width: 320px;
+            height: 240px;
+            border: solid;
+            border-width: 3px 3px 3px 3px;
+        }
+
+        #result {
+            border: solid;
+            border-width: 1px 1px 1px 1px;
+            padding: 20px;
+            width: 70%;
+        }
+
+        ul {
+            margin-bottom: 0;
+            margin-right: 40px;
+        }
+
+        li {
+            display: inline;
+            padding-right: 0.5em;
+            padding-left: 0.5em;
+            font-weight: bold;
+            border-right: 1px solid #333333;
+        }
+
+            li a {
+                text-decoration: none;
+                color: black;
+            }
+
+        #footer a {
+            color: black;
+        }
+
+        .tsel {
+            padding: 0;
+        }
+    </style>
+
+    <title>Angle - Bootstrap Admin Template</title>
+    <!-- =============== VENDOR STYLES ===============-->
+    <!-- FONT AWESOME-->
+    <link rel="stylesheet" href="~/contentadvy/vendor/fontawesome/css/font-awesome.min.css">
+    <!-- SIMPLE LINE ICONS-->
+    <link rel="stylesheet" href="~/contentadvy/vendor/simple-line-icons/css/simple-line-icons.css">
+    <!-- =============== BOOTSTRAP STYLES ===============-->
+    <link rel="stylesheet" href="~/contentadvy/css/bootstrap.css" id="bscss">
+    <!-- =============== APP STYLES ===============-->
+    <link rel="stylesheet" href="~/contentadvy/css/app.css" id="maincss">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="block-center mt-xl wd-xl">
+            <!-- START panel-->
+            <div class="panel panel-dark panel-flat">
+                <div class="panel-heading text-center">
+                    <a href="#">
+                        <img src="img/logo.png" alt="Image" class="block-center img-rounded">
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <h3><strong>@TempData["Message"]</strong></h3>
+                    <p class="text-center pv">SIGN IN TO CONTINUE.</p>
+                   @using (Html.BeginForm("login", "Login", FormMethod.Post))
+            {
+                     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+                        <div class="form-group has-feedback">
+                            <input id="exampleInputEmail1" name="mail" type="email" placeholder="Enter email" autocomplete="off" required class="form-control">
+                            <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input id="exampleInputPassword1" name="pass" type="password" placeholder="Password" required class="form-control">
+                            <span class="fa fa-lock form-control-feedback text-muted"></span>
+                        </div>
+                        <div class="clearfix">
+                            <div class="checkbox c-checkbox pull-left mt0">
+                                <label>
+                                    <input type="checkbox" value="" name="remember">
+                                    <span class="fa fa-check"></span>Remember Me
+                                </label>
+                            </div>
+                            <div class="pull-right">
+                                <a href="recover.html" class="text-muted">J'ai oublier mon mot de passe</a>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-primary mt-lg">Login</button>
+                    </form>
+                   }
+                    <p class="pt-lg text-center">Need to Signup?</p><a href="register.html" class="btn btn-block btn-default">Register Now</a>
+                    <button type="button" class="btn btn-block btn-primary mt-lg" data-toggle="modal" data-target="#exampleModalCenter">Login with Qr</button>
+
+                </div>
+
+            </div>
+            <!-- END panel-->
+            <div class="p-lg text-center">
+                <span>&copy;</span>
+                <span>2016</span>
+                <span>-</span>
+                <span>Angle</span>
+                <br>
+                <span>Bootstrap Admin Template</span>
+
+            </div>
+        </div>
+        <!-- Button trigger modal -->
+        <!-- Modal -->
+
+    </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="mainbody">
+                        <button onclick="load()" align="center" class="btn btn-block btn-primary mt-lg">Detecter</button>
+
+
+                          @using (Html.BeginForm("loginqr", "Login", FormMethod.Post))
+                          {
+                          <table class="tsel" border="0">
+                                <tr>
+                                    <td><img class="selector" id="webcamimg" src="vid.png" onclick="setwebcam()" align="left" hidden /></td>
+                                    <td><img class="selector" id="qrimg" src="cam.png" onclick="setimg()" align="right" hidden /></td>
+
+                                </tr>
+                                <div id="outdiv" align="center">
+                                </div>
+                                <tr>
+
+                                        <td align="center">
+                                            <br>
+
+                                            <input type="text" name="codeqr" id="result" class="form-control" align="center">
+
+
+                                        </td>
+                                        <br>                                         </br>
+
+
+                                        <button type="submit" class="btn btn-block btn-primary mt-lg">valider</button>
+
+</table>
+                       }
+</div>
+                    <canvas id="qr-canvas" width="800" height="600"></canvas>
+
+                </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary">Save changes</button>
+</div>
+            </div>
+        </div>
+    </div>
+<!-- =============== VENDOR SCRIPTS ===============-->
+<!-- MODERNIZR-->
+<script src="~/contentadvy/vendor/modernizr/modernizr.custom.js"></script>
+<!-- JQUERY-->
+<script src="~/contentadvy/vendor/jquery/dist/jquery.js"></script>
+<!-- BOOTSTRAP-->
+<script src="~/contentadvy/vendor/bootstrap/dist/js/bootstrap.js"></script>
+<!-- STORAGE API-->
+<script src="~/contentadvy/vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
+<!-- PARSLEY-->
+<script src="~/contentadvy/vendor/parsleyjs/dist/parsley.min.js"></script>
+<!-- =============== APP SCRIPTS ===============-->
+<script src="~/contentadvy/js/app.js"></script>
+<script type="text/javascript" src="~/contentadvy/js/llqrcode.js"></script>
+<script type="text/javascript" src="~/contentadvy/js/plusone.js"></script>
+<script type="text/javascript" src="~/contentadvy/js/webqr.js"></script>
+    <script async src="~/contentadvy/js/f.txt"></script>
+
+</body>
+</html>

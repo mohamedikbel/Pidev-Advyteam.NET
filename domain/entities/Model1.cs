@@ -28,6 +28,11 @@ namespace domain.entities
                 .WithMany(e => e.commentaires)
                 .Map(m => m.ToTable("employe_commentaire").MapLeftKey("commentaires_id").MapRightKey("employes_id"));
 
+            modelBuilder.Entity<commentaire>()
+                .HasMany(e => e.posts)
+                .WithMany(e => e.commentaires)
+                .Map(m => m.ToTable("post_commentaire").MapLeftKey("commentaires_id").MapRightKey("posts_id"));
+
             modelBuilder.Entity<document>()
                 .Property(e => e.nomdoc)
                 .IsUnicode(false);
