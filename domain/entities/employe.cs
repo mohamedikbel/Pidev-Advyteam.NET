@@ -24,6 +24,7 @@ namespace domain.entities
         [StringLength(255)]
         public string codeqr { get; set; }
 
+        [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm}")]
         public DateTime? datedn { get; set; }
 
         [StringLength(255)]

@@ -1,0 +1,48 @@
+﻿@model domain.entities.employe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdvyteam.cshtml";
+}
+
+<div class="panel widget">
+    <div class="panel-body">
+        <div class="row row-table">
+            <div class="col-xs-6 text-center">
+                <img src="~/contentadvy/img/ikbel.jpg" alt="Image" class="img-circle thumb96">
+            </div>
+            <div class="col-xs-6">
+                <h3 class="mt0">@Html.DisplayFor(model => model.nom) @Html.DisplayFor(model => model.prenom) </h3>
+                <ul class="list-unstyled">
+                    <li class="mb-sm">
+                        <em class="fa fa-fw fa-user mr"></em>@Html.DisplayFor(model => model.role)
+                    </li>
+                    <li class="mb-sm">
+                        <em class="fa fa fa-phone"></em>
+                    </li>
+                    <li class="mb-sm">
+                        <em class="fa fa-envelope fa-fw"></em>@Html.DisplayFor(model => model.email)
+
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body bg-inverse">
+        <div class="row row-table text-center">
+            <div class="col-xs-4">
+           
+
+            </div>
+            <div class="col-xs-4">
+            
+
+            </div>
+            <div class="col-xs-4">
+         
+
+            </div>
+        </div>
+    </div>
+</div>

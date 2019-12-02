@@ -208,7 +208,7 @@
 
 
                           @using (Html.BeginForm("loginqr", "Login", FormMethod.Post))
-                          {
+                          {@Html.AntiForgeryToken()
                           <table class="tsel" border="0">
                                 <tr>
                                     <td><img class="selector" id="webcamimg" src="vid.png" onclick="setwebcam()" align="left" hidden /></td>

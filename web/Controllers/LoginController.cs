@@ -140,7 +140,7 @@ namespace web.Controllers
 
             }
             Session["emnom"] = em.nom;
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Admin");
         }
 
 

@@ -229,6 +229,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="contentadvy\img\ikbel.jpg" />
     <Content Include="contentadvy\js\f.txt" />
     <Content Include="contentadvy\js\llqrcode.js" />
     <Content Include="contentadvy\js\plusone.js" />
@@ -309,6 +311,10 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Create.cshtml" />
     <Content Include="Views\Login\test.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,7 +322,6 @@
     <Folder Include="contentadvy\css\" />
     <Folder Include="contentadvy\documentation\" />
     <Folder Include="contentadvy\i18n\" />
-    <Folder Include="contentadvy\img\" />
     <Folder Include="contentadvy\master\" />
     <Folder Include="contentadvy\server\" />
     <Folder Include="contentadvy\vendor\" />
