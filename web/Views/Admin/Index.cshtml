@@ -1,4 +1,4 @@
-﻿@model domain.entities.employe
+﻿@model web.Models.employe
 
 @{
     ViewBag.Title = "Index";
@@ -94,7 +94,9 @@
                                         <td>@p.email</td>
                                         <td>@p.numtel</td>
                                            <td>
-                                         @Html.ActionLink("Details", "Details", new { id = @p.id }) | @Html.ActionLink("Delete", "Delete", new { id = @p.id })
+                                         @Html.ActionLink("Details", "Details", new { id = @p.id }) |
+                                         @Html.ActionLink("Delete", "Delete", new { id = @p.id })  |
+                                         @Html.ActionLink("Edit", "Edit", new { id = @p.id }) 
 
 
                                            </td>

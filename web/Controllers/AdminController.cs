@@ -1,21 +1,23 @@
-﻿using domain.entities;
+﻿
 using MyFinance.Data.Infrastructure;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Service.Pattern;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
+using System.Data;
 using web.Models;
 
 namespace web.Controllers
 {
     public class AdminController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Admin
         IDataBaseFactory dbf;
         IUnitOfWork uow;
@@ -70,33 +72,38 @@ namespace web.Controllers
 
 
         [HttpPost]
-        public async System.Threading.Tasks.Task<ActionResult> Createe(employe c)
+        public ActionResult Createe(employe c)
         {
 
             HttpClient Client = new HttpClient();
-            Client.BaseAddress = new Uri("http://localhost:9080");
-            var sqlFormattedDate = c.datedn.Value.ToString("yyyy-MM-dd HH:mm:ss");
+           Client.BaseAddress = new Uri("http://localhost:9080");
+
             string json = JsonConvert.SerializeObject(c);
-            Console.WriteLine(json);
-            Client.PostAsync("pidev-web/api/employe", new StringContent(json,Encoding.UTF8,"application/json")).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode()).GetAwaiter().GetResult();
-           // Client.DefaultRequestHeaders.ExpectContinue = false;
+             var myCleanJsonObject = JObject.Parse(json);
+             string test = myCleanJsonObject.ToString().Substring(1, myCleanJsonObject.ToString().Length - 1);
+            Console.WriteLine("Substring: {0}", test);
+            System.Diagnostics.Debug.WriteLine(json);
 
-            //HttpResponseMessage res = await Client.PostAsync(new Uri("http://localhost:9080/pidev-web/api/employe", UriKind.RelativeOrAbsolute), new StringContent(json, Encoding.UTF8, "application/json"));
+            Client.PostAsync("pidev-web/api/employe", new StringContent(json,Encoding.UTF8, "application/json")).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode()).GetAwaiter().GetResult();
 
-            return RedirectToAction("Index");
-
-
-
-
-
-
-
-
+            //service.Add(c);
+            //service.Commit();
 
 
 
             return RedirectToAction("Index");
+
         }
+
+
+
+
+
+
+
+
+
+
 
         // POST: Admin/Create
         [HttpPost]
@@ -117,23 +124,38 @@ namespace web.Controllers
         // GET: Admin/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            employe emp = service.GetById(id);
+            if (emp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(emp);
         }
 
         // POST: Admin/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async System.Threading.Tasks.Task<ActionResult> Edite(int id, employe e)
         {
-            try
-            {
-                // TODO: Add update logic here
+            HttpClient Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:9080");
+             /* string json = JsonConvert.SerializeObject(e);
+              Client.PutAsync("pidev-web/api/employe/"+id, new StringContent(json, Encoding.UTF8, "application/json")).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode()).GetAwaiter().GetResult();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+      */
+
+            string json = JsonConvert.SerializeObject(e);
+            var myCleanJsonObject = JObject.Parse(json);
+            string test = myCleanJsonObject.ToString().Substring(1, myCleanJsonObject.ToString().Length - 1);
+            Console.WriteLine("Substring: {0}", test);
+            System.Diagnostics.Debug.WriteLine(json);
+
+            Client.PutAsync("pidev-web/api/employe"+id, new StringContent(json, Encoding.UTF8, "application/json")).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode()).GetAwaiter().GetResult();
+          
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/Delete/5
