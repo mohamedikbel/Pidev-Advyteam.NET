@@ -1,0 +1,66 @@
+﻿@model data.conge
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>conge</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.employe.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employe.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_deb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_deb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_demande)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_demande)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_fin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_fin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.etat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.etat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.paye)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paye)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

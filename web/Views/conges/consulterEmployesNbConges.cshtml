@@ -1,0 +1,77 @@
+﻿@model IEnumerable<data.employe>
+
+@{
+    Layout= "~/Views/Shared/_LayoutAdvyteam.cshtml";
+}
+
+@{
+    ViewBag.Title = "consulterEmployesNbConges";
+}
+
+<h2>consulterEmployesNbConges</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nb_conge_restants)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nb_jours_conge_total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.role)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isActif)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nb_conge_restants)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nb_jours_conge_total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.role)
+        </td>
+        <td>
+            @Html.ActionLink("Consulter liste de congé", "listCongeParEmploye", new { id=item.id })  
+        </td>
+    </tr>
+}
+
+</table>

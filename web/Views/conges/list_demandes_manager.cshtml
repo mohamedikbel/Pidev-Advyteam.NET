@@ -1,0 +1,66 @@
+﻿@model IEnumerable<data.conge>
+
+@{
+    ViewBag.Title = "list_demandes_manager";
+}
+
+<h2>liste demandes de congé non traitées</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("reinitialiser les congés (une fois par an!)", "reinitialiserConges")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.employe.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_deb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_fin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.paye)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_demande)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.etat)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.employe.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_deb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_fin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paye)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_demande)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.etat)
+        </td>
+        <td>
+            @Html.ActionLink("Valider", "valider", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Refuser", "refuser", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

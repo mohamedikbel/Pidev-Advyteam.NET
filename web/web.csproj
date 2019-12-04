@@ -327,6 +327,16 @@
     <Content Include="Views\Recup\Index.cshtml" />
     <Content Include="Views\Recup\ChangerMotdepasse.cshtml" />
     <Content Include="Views\Recup\Erreur.cshtml" />
+    <Content Include="Views\conges\consulterEmployesNbConges.cshtml" />
+    <Content Include="Views\conges\consulterMesConges.cshtml" />
+    <Content Include="Views\conges\Create.cshtml" />
+    <Content Include="Views\conges\Delete.cshtml" />
+    <Content Include="Views\conges\DemandeConge.cshtml" />
+    <Content Include="Views\conges\Details.cshtml" />
+    <Content Include="Views\conges\Edit.cshtml" />
+    <Content Include="Views\conges\Index.cshtml" />
+    <Content Include="Views\conges\listCongeParEmploye.cshtml" />
+    <Content Include="Views\conges\list_demandes_manager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
