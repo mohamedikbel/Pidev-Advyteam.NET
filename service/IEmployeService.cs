@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace service
 {
-    public interface IEmployerService : IService<employe>
+    public interface IEmployeService : IService<tache>
     {
-        IEnumerable<employe> getListTrie();
-       
+        List<tache> MaxEmp();
     }
 }

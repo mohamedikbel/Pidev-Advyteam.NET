@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace service
 {
-   public  interface IformateurService :IService<formateur>
+
+   public interface IEmployeeService : IService<employe>
     {
-         IEnumerable<formateur> GetformateurByTitle(string title);
     }
 }
+

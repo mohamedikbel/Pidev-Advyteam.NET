@@ -18,18 +18,20 @@ namespace web.Controllers
 
         public FormateurService fs;
         public SkillsService ss;
-
+        public IInvetationService Is;
+        public Context ctx = new Context();
         public formationsController()
         {
             db = new FormationService();
             fs = new FormateurService();
             ss = new SkillsService();
+            Is = new InvitationServiice();
         }
         // GET: formations
         public ActionResult Index()
         {
-           
-            return View(db.GetAll().ToList());
+            
+            return View(ctx.formation.ToList());
         }
 
        
@@ -60,7 +62,7 @@ namespace web.Controllers
                 int i = DateTime.Compare(formation.date_debut.Value, formation.date_fin.Value);
                 if(i <= 0)
                 {
-                    formation.skills.Add(ss.GetById(1));
+                   
                     
                     
                     db.Add(formation);
@@ -102,8 +104,7 @@ namespace web.Controllers
             };
             ViewBag.lst = lst;
             ViewBag.formateur_id = new SelectList(fs.GetAll().ToList(), "id", "nomPrenom", formation.formateur_id);
-            ViewBag.db = formation.date_debut.ToString();
-            ViewBag.df = formation.date_fin.ToString();
+           
             return View(formation);
         }
 
@@ -118,8 +119,11 @@ namespace web.Controllers
                 int i = DateTime.Compare(formation.date_debut.Value, formation.date_fin.Value);
                 if(i <= 0)
                 {
-                    db.Update(formation);
-                    db.Commit();
+                    /*  db.Update(formation);
+                      db.Commit();*/
+                    ctx.Entry(formation).State = EntityState.Modified;
+                    ctx.SaveChanges();
+
                     TempData["SM"] = "Modifier Avec Success";
                     return RedirectToAction("Index");
                 }
@@ -133,8 +137,7 @@ namespace web.Controllers
             };
             ViewBag.lst = lst;
             ViewBag.formateur_id = new SelectList(fs.GetAll().ToList(), "id", "nomPrenom", formation.formateur_id);
-            ViewBag.db = formation.date_debut.ToString();
-            ViewBag.df = formation.date_fin.ToString();
+           
           
                
             return View(formation);
@@ -152,6 +155,14 @@ namespace web.Controllers
             {
                 return HttpNotFound();
             }
+            foreach(invetation i in Is.GetAll().ToList<invetation>())
+            {
+                if (i.idFormation == formation.id)
+                    Is.Delete(i);
+
+
+            }
+            Is.Commit();
             db.Delete(formation);
             db.Commit();
             TempData["SM"] = "Supprimer Avec Success";

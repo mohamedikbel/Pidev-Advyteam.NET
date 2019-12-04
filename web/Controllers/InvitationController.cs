@@ -12,13 +12,13 @@ namespace web.Controllers
     public class InvitationController : Controller
     {   
         public InvitationServiice Is;
-        public EmployerService Es;
+        public EmployeeService Es;
         public TacheService Ts;
 
         public InvitationController()
         {
             Is = new InvitationServiice();
-            Es = new EmployerService();
+            Es = new EmployeeService();
             Ts = new TacheService();
         }
         // GET: Invitation
@@ -43,7 +43,7 @@ namespace web.Controllers
                 etat_Invitation = "En_Attente"
 
             };
-            ViewBag.idEmploye = new SelectList(Es.GetAll().ToList(), "EM_Id", "prenom");
+            ViewBag.idEmploye = new SelectList(Es.GetAll().ToList(), "EM_Id", "prenom","Selctioner Employer");
 
             return View(i);
         }

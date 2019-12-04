@@ -8,35 +8,61 @@ using System.Web;
 using System.Web.Mvc;
 using data;
 using domain.entities;
+
+using service;
+using web.Models;
 using data.Infrastructure;
+using System.IO;
 using servicepattern;
 
 namespace web.Controllers
 {
     public class formateursController : Controller
     {
-        private Context db = new Context();
-
+        public FormateurService formateurS;
+        IEmployeService emp = null;
+        IEmployeeService emps = null;
+        public Context ctx = new Context();
+        public formateursController()
+        {
+            formateurS = new FormateurService();
+            emp = new EmployeService();
+            emps = new EmployeeService();
+        }
+      
         // GET: formateurs
-        public ActionResult Index()
+        public ActionResult Index(String searchString)
         {
-            return View(db.formateur.ToList());
+          List<formateur> Form = new List<formateur>();
+
+           // Form = formateurS.GetAll().ToList();
+           Form= formateurS.MaxNote();
+            List<formateur> Forms = new List<formateur>();
+           
+            if (!String.IsNullOrEmpty(searchString))
+                {
+                    for (int i = Form.Count - 1; i >= 0; i--)
+                    {
+
+                        if (Form[i].nomPrenom.Contains(searchString))
+                        {
+                            Forms.Add(Form[i]);
+                        }
+                  
+                    }
+                }else
+            {
+
+                Forms = Form;
+
+            }
+           
+
+
+            return View(Forms);
         }
 
-        // GET: formateurs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            formateur formateur = db.formateur.Find(id);
-            if (formateur == null)
-            {
-                return HttpNotFound();
-            }
-            return View(formateur);
-        }
+       
 
         // GET: formateurs/Create
         public ActionResult Create()
@@ -44,88 +70,134 @@ namespace web.Controllers
             return View();
         }
 
-        
+        // POST: formateurs/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,img,nomPrenom,note,specialiste")] formateur formateur)
+        public ActionResult Create( formateur f, HttpPostedFileBase file)
         {
-            IDataBaseFactory Factory = new DataBaseFactory();
-            IUnitOfWork Uok = new UnitOfWork(Factory);
-            IService<formateur> fService = new Service<formateur>(Uok);
             if (ModelState.IsValid)
             {
-                fService.Add(formateur);
-                fService.Commit();
+                formateur q = new formateur();
+                q.id = f.id;
+                q.img = file.FileName;
+                q.nomPrenom = f.nomPrenom;
+                q.note = f.note;
+                q.specialiste = f.specialiste;
+                formateurS.Add(q);
+                formateurS.Commit();
+                var fileName = "";
+                if (file.ContentLength > 0)
+                {
+                    fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/Uploads/"), fileName);
+                    file.SaveAs(path);
+                }
+                TempData["SM"] = "Ajouter Avec Success";
                 return RedirectToAction("Index");
             }
 
-            return View(formateur);
+            return View();
         }
 
         // GET: formateurs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit( int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            formateur formateur = db.formateur.Find(id);
-            if (formateur == null)
+            
+            formateur formateusr = formateurS.GetById(id);
+           
+            if (formateusr == null)
             {
                 return HttpNotFound();
             }
-            return View(formateur);
+            return View(formateusr);
         }
 
         // POST: formateurs/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,img,nomPrenom,note,specialiste")] formateur formateur)
+        public ActionResult Edit( formateur formateur)
         {
-            if (ModelState.IsValid)
+            
+            if (!ModelState.IsValid)
             {
-                db.Entry(formateur).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                RedirectToAction("Edit");
             }
-            return View(formateur);
+           
+
+            ctx.Entry(formateur).State = EntityState.Modified;
+            ctx.SaveChanges();
+            TempData["SM"] = "Modifer Avec Success";
+            return RedirectToAction("Index");
         }
 
         // GET: formateurs/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            formateur formateur = db.formateur.Find(id);
+           
+            formateur formateur = formateurS.GetById(id);
             if (formateur == null)
             {
                 return HttpNotFound();
             }
-            return View(formateur);
-        }
-
-        // POST: formateurs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            formateur formateur = db.formateur.Find(id);
-            db.formateur.Remove(formateur);
-            db.SaveChanges();
+           
+            formateurS.Delete(formateur);
+            formateurS.Commit();
+            TempData["SM"] = "Supprimer Avec Success";
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+        
+
+
+        public ActionResult Dashboard()
+        {   
+            IDataBaseFactory Factory = new DataBaseFactory();
+            IUnitOfWork Uok = new UnitOfWork(Factory);
+            IService<tache> chService = new Service<tache>(Uok);
+            IService<employe> hService = new Service<employe>(Uok);
+            List<employe> em= hService.GetAll().ToList();
+            List<tache> list = chService.GetAll().ToList();
+            
+            List<String> repartions = new List<String>();
+            var nbrvue = emp.MaxEmp().Select(x => x.dureeReelle - x.dureeEtimee).Distinct().Take(10);
+            var nbrvu = emp.MaxEmp().Select(x => x.employe_EM_Id).Take(10);
+            List<String> noms = new List<String>();
+            foreach(int id in nbrvu)
+
             {
-                db.Dispose();
+                employe e = emps.GetById(id);
+                noms.Add(e.prenom);
+
             }
-            base.Dispose(disposing);
+
+
+
+
+            //var Names = em.Select(x => x.nom).Distinct();
+
+
+
+
+
+            var rep = repartions;
+           
+           
+
+
+            
+            ViewBag.NBRVUE = nbrvue;
+            ViewBag.REP = noms;
+
+            return View();
         }
+
+
+
+
+
+
     }
 }

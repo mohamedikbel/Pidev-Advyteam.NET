@@ -10,7 +10,11 @@ namespace web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToRoute(new
+            {
+                controller = "formateurs",
+                action = "Dashboard"
+            });
         }
 
         public ActionResult About()

@@ -1,17 +1,17 @@
 ﻿@model domain.entities.formation
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Modifier";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section>
     <!-- Page content-->
     <div class="content-wrapper">
-        <div class="content-heading">Modifier Test</div>
+        <div class="content-heading">Modifier Formation</div>
         <!-- Zero Configuration-->
         <div class="panel panel-default">
             <div class="panel-heading ">
-                <a href="@Url.Action("Index", "Test")" class="btn btn-labeled btn-default">
+                <a href="@Url.Action("Index", "formations")" class="btn btn-labeled btn-default">
                     <span class="btn-label">
                         <i class="fa fa-arrow-left"></i>
                     </span> PRECEDENT
@@ -102,11 +102,11 @@
     <script>
     $(function () {
         $("#type").addClass("form-control m-b");
-        $("#date_fin").val(@ViewBag.df);
-        $("#date_debut").val(@ViewBag.db)
+
         var sm = '@TempData["er"]';
         if (sm != '')
             alertify.error(sm);
+        
     });
     </script>
 }

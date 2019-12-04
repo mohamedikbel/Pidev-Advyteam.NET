@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <!-- Page content-->
+    <div class="content-wrapper">
+        <div class="content-heading">Modifier Formation</div>
+        <!-- Zero Configuration-->
+        <div class="panel panel-default">
+            <div class="panel-heading ">
+                Dashboard
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6 col-md-offset-3">
+
+                   
+
+                    <div id="chart_container">
+
+                        <canvas id="bar_chart"></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+        <script>
+
+                        var repArray =@Html.Raw(Json.Encode(ViewBag.REP));
+                        var nbrvue =@Html.Raw(Json.Encode(ViewBag.NBRVUE));
+                        var ctx=$("#bar_chart");
+                        var barchart =new Chart(ctx,{
+
+
+                            type:'bar',
+                            data:{labels:repArray,
+                                datasets:[{
+
+                                    label:"Les 10  employés qui font des retards ",
+                                    data:nbrvue,
+                                    backgroundColor:["rgba(242,166,54,.5)","rgba(145,65,72,.5)","rgba(74,25,92,.5)"],
+
+                                    borderColor:["rgb(242,166,54)","rgb(145,65,72)","rgb(74,25,92)"]
+                                }]
+
+                            },
+                            options:{
+                                maintainAspectRatio:false,
+                                scales:{xAxes:[{ticks:{beginAtZero:true}}]}
+
+
+
+
+                            },
+
+
+
+                        });
+
+</script>
+    }

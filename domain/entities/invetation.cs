@@ -12,6 +12,7 @@ namespace domain.entities
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Required(ErrorMessage ="merci de selectioner employer")]
         public int idEmploye { get; set; }
 
         [Key]

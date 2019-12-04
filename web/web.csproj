@@ -579,15 +579,14 @@
     <Content Include="Views\Question\Details.cshtml" />
     <Content Include="Views\Reponce\Create.cshtml" />
     <Content Include="Views\Reponce\Edit.cshtml" />
-    <Content Include="Views\formateurs\Create.cshtml" />
-    <Content Include="Views\formateurs\Delete.cshtml" />
-    <Content Include="Views\formateurs\Details.cshtml" />
-    <Content Include="Views\formateurs\Edit.cshtml" />
-    <Content Include="Views\formateurs\Index.cshtml" />
     <Content Include="Views\formations\Create.cshtml" />
     <Content Include="Views\formations\Edit.cshtml" />
     <Content Include="Views\formations\Index.cshtml" />
     <Content Include="Views\Invitation\Create.cshtml" />
+    <Content Include="Views\formateurs\Create.cshtml" />
+    <Content Include="Views\formateurs\Dashboard.cshtml" />
+    <Content Include="Views\formateurs\Edit.cshtml" />
+    <Content Include="Views\formateurs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -597,6 +596,7 @@
     <Folder Include="Content\i18n\" />
     <Folder Include="Content\master\" />
     <Folder Include="Content\server\" />
+    <Folder Include="Content\Uploads\" />
     <Folder Include="Content\vendor\bootstrap-tour\" />
     <Folder Include="Content\vendor\eonasdan-bootstrap-datetimepicker\" />
     <Folder Include="Content\vendor\jquery.steps\" />

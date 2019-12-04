@@ -66,10 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="EmployerService.cs" />
+    <Compile Include="EmployeeService.cs" />
+    <Compile Include="EmployeService.cs" />
     <Compile Include="FormateurService.cs" />
     <Compile Include="FormationService.cs" />
-    <Compile Include="IEmployerService.cs" />
+    <Compile Include="IEmployeeService.cs" />
+    <Compile Include="IEmployeService.cs" />
     <Compile Include="IFormateurService.cs" />
     <Compile Include="IFormationService.cs" />
     <Compile Include="IInvetationService.cs" />

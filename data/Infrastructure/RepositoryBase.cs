@@ -73,6 +73,7 @@ namespace data.Infrastructure
         {
             dbset.Attach(Entity);
             ctx.Entry<T>(Entity).State = EntityState.Modified;
+            
         }
     }
     

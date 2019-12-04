@@ -22,13 +22,13 @@ namespace domain.entities
         [Display(Name ="Date Debut")]
         [Required(ErrorMessage = "Invalid Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? date_debut { get; set; }
 
         [Display(Name = "Date Fin")]
         [Required(ErrorMessage = "Invalid Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? date_fin { get; set; }
         [Display(Name = "Description")]
         [Required(ErrorMessage = "Description Obligatoitre")]

@@ -19,13 +19,18 @@ namespace domain.entities
         public int id { get; set; }
 
         [StringLength(255)]
+        [Display(Name ="Image")]
         public string img { get; set; }
 
+        [Display(Name = "Nom et Prenom")]
+        [Required(ErrorMessage = "Nom et Prenom obligatoire")]
         [StringLength(255)]
         public string nomPrenom { get; set; }
 
         public float? note { get; set; }
 
+        [Display(Name = "Specialité")]
+        [Required(ErrorMessage = "Specialité obligatoire")]
         [StringLength(255)]
         public string specialiste { get; set; }
 
