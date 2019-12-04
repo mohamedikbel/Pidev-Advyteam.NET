@@ -16,8 +16,11 @@
             </div>
             <div class="panel-body">
                 <div id="datatable1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                    <div class="row"><dv  class="col-sm-6"><div  class="col-sm-6"><div id="datatable1_filter" class="dataTables_filter"><label>Search all columns:<input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable1"></label></div></div>@Html.ActionLink("Ajouter Un Employe", "Create")
-</div><div class="row">
+                    <div align="right"class="row"><dv  class="col-sm-6"><div  class="col-sm-6"><div  id="datatable1_filter" class="dataTables_filter"><label>Rechercher:<input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable1"></label></div></div>
+                                                         
+                                                      <div align="right"    class="row">@Html.ActionLink("Ajouter Un Employe","Create", null, new { @class = "btn btn-success" }) </div>
+
+                                                      </div><div class="row">
                         
                     <div class="col-sm-12">
                             <table id="datatable1" class="table table-striped table-hover dataTable no-footer" role="grid" aria-describedby="datatable1_info">
@@ -93,10 +96,57 @@
                                         <td><img src="~/contentadvy/img/ikbel.jpg" height="50" width="50" class="rounded float-left" alt="..."> </td>
                                         <td>@p.email</td>
                                         <td>@p.numtel</td>
+                                        
+
                                            <td>
-                                         @Html.ActionLink("Details", "Details", new { id = @p.id }) |
-                                         @Html.ActionLink("Delete", "Delete", new { id = @p.id })  |
-                                         @Html.ActionLink("Edit", "Edit", new { id = @p.id }) 
+{
+                                               
+                                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Notifier</button>
+                                               @using (Html.BeginForm("SendSMS", "Admin"))
+
+                                               {    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5);" data-backdrop="false">
+                                                   <div class="modal-dialog" role="document">
+                                                       <div class="modal-content">
+                                                           <div class="modal-header">
+                                                               <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                   <span aria-hidden="true">&times;</span>
+                                                               </button>
+                                                           </div>
+                                                           <div class="modal-body">
+                                                               <form>
+                                                                   <div class="form-group">
+                                                                       <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                                                       <input type="text" class="form-control" name="Num" value="@p.email" id="recipient-name">
+                                                                   </div>
+                                                                   <div class="form-group">
+                                                                       <label for="message-text" class="col-form-label">Message:</label>
+                                                                       <textarea class="form-control" name="body" id="message-text"></textarea>
+                                                                   </div>
+                                                               </form>
+                                                           </div>
+                                                           <div class="modal-footer">
+                                                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                               <button type="submit" class="btn btn-primary">Send message</button>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               }
+
+
+
+                                            </td>
+
+                                           <td>
+                                               @Html.ActionLink("Details", "Details", new { id = @p.id })
+                                           </td> 
+                                           <td>
+                                               @Html.ActionLink("Delete", "Delete", new { id = @p.id })
+                                           </td>
+                                           <td>
+
+                                               @Html.ActionLink("Edit", "Edit", new { id = @p.id })
 
 
                                            </td>
@@ -110,6 +160,7 @@
             </div>
         </div>
     </div>
+   
     </div>
 
 

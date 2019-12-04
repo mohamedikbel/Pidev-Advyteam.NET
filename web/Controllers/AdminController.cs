@@ -11,6 +11,9 @@ using System.Text;
 using System.Web.Mvc;
 using System.Data;
 using web.Models;
+using System.Web;
+using System.IO;
+using System.Net.Mail;
 
 namespace web.Controllers
 {
@@ -54,12 +57,24 @@ namespace web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            employe emp = service.GetById(id);
-            if (emp == null)
+            HttpClient Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:9080");
+            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = Client.GetAsync("pidev-web/api/employe/" + id).Result;
+            IEnumerable<employe> r = response.Content.ReadAsAsync<IEnumerable<employe>>().Result;
+            List<employe> list = new List<employe>();
+
+            foreach (var item in r)
+            {
+                list.Add(item);
+            }
+
+
+            if (r == null)
             {
                 return HttpNotFound();
             }
-            return View(emp);
+            return View(list[0]);
         }
         // GET: Admin/Details/5
       
@@ -72,9 +87,10 @@ namespace web.Controllers
 
 
         [HttpPost]
-        public ActionResult Createe(employe c)
+        public ActionResult Createe(employe c )
         {
-
+           
+           
             HttpClient Client = new HttpClient();
            Client.BaseAddress = new Uri("http://localhost:9080");
 
@@ -85,10 +101,6 @@ namespace web.Controllers
             System.Diagnostics.Debug.WriteLine(json);
 
             Client.PostAsync("pidev-web/api/employe", new StringContent(json,Encoding.UTF8, "application/json")).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode()).GetAwaiter().GetResult();
-
-            //service.Add(c);
-            //service.Commit();
-
 
 
             return RedirectToAction("Index");
@@ -128,12 +140,24 @@ namespace web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            employe emp = service.GetById(id);
-            if (emp == null)
+            HttpClient Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:9080");
+            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = Client.GetAsync("pidev-web/api/employe/" + id).Result;
+            IEnumerable<employe> r = response.Content.ReadAsAsync<IEnumerable<employe>>().Result;
+            List<employe> list = new List<employe>();
+
+            foreach (var item in r)
+            {
+                list.Add(item);
+            }
+
+
+            if (r == null)
             {
                 return HttpNotFound();
             }
-            return View(emp);
+            return View(list[0]);
         }
 
         // POST: Admin/Edit/5
@@ -153,7 +177,7 @@ namespace web.Controllers
             Console.WriteLine("Substring: {0}", test);
             System.Diagnostics.Debug.WriteLine(json);
 
-            Client.PutAsync("pidev-web/api/employe"+id, new StringContent(json, Encoding.UTF8, "application/json")).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode()).GetAwaiter().GetResult();
+            Client.PutAsync("pidev-web/api/employe/"+id, new StringContent(json, Encoding.UTF8, "application/json")).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode()).GetAwaiter().GetResult();
           
             return RedirectToAction("Index");
         }
@@ -165,12 +189,24 @@ namespace web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            employe emp = service.GetById(id);
-            if (emp == null)
+            HttpClient Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:9080");
+            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = Client.GetAsync("pidev-web/api/employe/" + id).Result;
+            IEnumerable<employe> r = response.Content.ReadAsAsync<IEnumerable<employe>>().Result;
+            List<employe> list = new List<employe>();
+
+            foreach (var item in r)
+            {
+                list.Add(item);
+            }
+
+
+            if (r == null)
             {
                 return HttpNotFound();
             }
-            return View(emp);
+            return View(list[0]);
         }
 
         [HttpPost, ActionName("Deletee")]
@@ -197,5 +233,35 @@ namespace web.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public ActionResult SendSMS(string Num, string Body)
+        {
+            var senderEmail = new MailAddress("pidevadvyteam@gmail.com", "Advyteam");
+            var receiverEmail = new MailAddress(Num,"Mohamed ikbel");
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(senderEmail.Address, "ESPRIT123")
+            };
+            using (var mess = new MailMessage(senderEmail, receiverEmail)
+            {
+                Subject = "Inscription MyApp",
+                Body = Body
+            })
+            {
+                smtp.Send(mess);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
     }
 }
