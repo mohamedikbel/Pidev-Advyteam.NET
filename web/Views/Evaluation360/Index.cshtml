@@ -1,0 +1,83 @@
+﻿@model IEnumerable<domain.evaluation360>
+
+@{
+    ViewBag.Title = "Liste des evaluations360";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Liste des évaluations360 existante</h2>
+
+@*<h5>
+    @Html.ActionLink("Ajouter une nouvelle évaluation", "Create")
+</h5>*@
+@Html.ActionLink("Créer une nouvelle évaluation360", "Create")<br />
+
+<h5>@Html.ActionLink("Retour vers page d'acceuil", "eval360")</h5>
+@*<h5>@Html.ActionLink("Consulter la liste de mes commentaires", "commentaire")</h5>*@
+
+
+<div class="dataTables_filter" id="dataTable_filter">
+    <label>
+        Rechercher:
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Chercher évaluation .." title="Type in a name of Claim">
+
+
+    </label>
+
+
+</div>
+<table class="table"  id="dataTable">
+    <tr>
+        <th>
+Nom Employé        </th>
+        <th>
+Date debut de l'évaluation        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.employe.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datedebut)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.id }) |
+        @Html.ActionLink("Détail de l'employé", "Details", new { item.employe.id }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+</table>
+
+<script>
+
+
+                //fonction recherche par nom ajax
+                function myFunction() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("dataTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        td = tr[i].getElementsByTagName("td")[1];
+
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                      
+                        }
+                    }
+                }
+
+
+</script>

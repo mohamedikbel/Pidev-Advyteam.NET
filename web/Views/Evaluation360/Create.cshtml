@@ -1,0 +1,57 @@
+﻿@model domain.evaluation360
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Création d'une évaluation360</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.datedebut,"Date début",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.datedebut, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.datedebut, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.idtest, "Test", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.idtest, new SelectList(ViewBag.Test, "idtest", "nameTest"), new { htmlAttributes = new { @class = "selectpicker border rounded" } })
+                @Html.ValidationMessageFor(model => model.idtest, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.evaluationEmploye360_id,"Nom de l'employé pour l'évaluation", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.evaluationEmploye360_id, new SelectList(ViewBag.employe, "id", "nom"), new { htmlAttributes = new { @class = "selectpicker border rounded" } })
+
+
+                @Html.ValidationMessageFor(model => model.evaluationEmploye360_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+                @*<h2>@Html.ActionLink("Valider ajout", "Create");</h2>*@ 
+        <div class="form-group">
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Valider Ajout" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+   <h4>@Html.ActionLink("Retour vers la liste des évaluations360", "Index")</h4>
+</h2>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

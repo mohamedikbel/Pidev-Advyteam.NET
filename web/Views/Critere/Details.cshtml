@@ -1,0 +1,64 @@
+﻿@model domain.evaluation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+    @foreach (var item in ViewBag.result)
+    { 
+        <h3>Les Détails de l'évaluation qui a comme nom :<p style="color:deeppink">@item.nom </p> </h3>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt style="list-style-image">Le nom de l'évaluation   :     </dt>
+
+            <dd>
+                @item.nom
+            </dd>
+            <br />
+            <dt style="list-style-image">
+                La description de l'évaluation:
+            </dt>
+
+            <dd>
+                @item.description
+            </dd><br />
+            <dt style="list-style-image">
+                Date début de l'évaluation:
+            </dt>
+            <br />
+            <dd>
+                @item.datedebut
+            </dd>
+            <br />
+
+            <dt style="list-style-image">
+                état de l'évaluation:
+            </dt>
+@if (@item.Launch )
+{
+            <dd>Lancer
+            </dd>
+            
+    
+
+}
+@if (!(@item.Launch))
+{
+    <dd>
+        Non Lancer
+    </dd>
+
+
+
+}
+           
+        </dl>
+        }
+    </>
+<p>
+ @*//   @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |*@
+    @Html.ActionLink("Retour vers la liste des critéres", "Index")
+</p>

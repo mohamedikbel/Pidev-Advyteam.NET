@@ -230,12 +230,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\congesController.cs" />
+    <Compile Include="Controllers\AvisController.cs" />
+    <Compile Include="Controllers\CommentaireController.cs" />
+    <Compile Include="Controllers\CritereController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\Evaluation360Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecupController.cs" />
-    <Compile Include="Controllers\TacheSOAController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -339,6 +342,31 @@
     <Content Include="Views\conges\Index.cshtml" />
     <Content Include="Views\conges\listCongeParEmploye.cshtml" />
     <Content Include="Views\conges\list_demandes_manager.cshtml" />
+    <Content Include="Views\Critere\Affectercritere.cshtml" />
+    <Content Include="Views\Critere\Create.cshtml" />
+    <Content Include="Views\Critere\Delete.cshtml" />
+    <Content Include="Views\Critere\deleted.cshtml" />
+    <Content Include="Views\Critere\Details.cshtml" />
+    <Content Include="Views\Critere\Edit.cshtml" />
+    <Content Include="Views\Critere\Index.cshtml" />
+    <Content Include="Views\Evaluation360\Create.cshtml" />
+    <Content Include="Views\Evaluation360\Delete.cshtml" />
+    <Content Include="Views\Evaluation360\deleted.cshtml" />
+    <Content Include="Views\Evaluation360\Details.cshtml" />
+    <Content Include="Views\Evaluation360\Edit.cshtml" />
+    <Content Include="Views\Evaluation360\Index.cshtml" />
+    <Content Include="Views\Commentaire\afficher.cshtml" />
+    <Content Include="Views\Commentaire\commentaire.cshtml" />
+    <Content Include="Views\Commentaire\compternbeval.cshtml" />
+    <Content Include="Views\Commentaire\Create.cshtml" />
+    <Content Include="Views\Commentaire\Delete.cshtml" />
+    <Content Include="Views\Commentaire\deleted.cshtml" />
+    <Content Include="Views\Commentaire\Details.cshtml" />
+    <Content Include="Views\Commentaire\Edit.cshtml" />
+    <Content Include="Views\Commentaire\Exist.cshtml" />
+    <Content Include="Views\Commentaire\Index.cshtml" />
+    <Content Include="Views\Commentaire\IndexByEmp.cshtml" />
+    <Content Include="Views\Commentaire\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

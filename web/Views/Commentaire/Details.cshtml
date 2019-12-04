@@ -1,0 +1,56 @@
+﻿@model domain.employe
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+@foreach (var item in ViewBag.result)
+{
+    <h3>Les Détails de l'employé qui a comme nom :<p style="color:deeppink">@item.nom </p> </h3>
+    <hr />
+        <dl class="dl-horizontal">
+
+            <dt style="list-style-image">Le nom de l'employé   :     </dt>
+
+            <dd>
+                @item.nom
+            </dd>
+            <br />
+            <dt style="list-style-image">
+                le prénom de l'employé
+            </dt>
+
+            <dd>
+                @item.prenom
+            </dd>
+            <br />
+            <dt style="list-style-image">
+                le raiting de l'employé
+            </dt>
+            <br />
+            <dd>
+                @item.rating
+            </dd>
+            <br />
+
+            <dt style="list-style-image">
+                Email de l'employé
+            </dt>
+
+            <dd>
+                @item.email
+            </dd>
+
+
+
+
+
+        </dl>
+}
+    </>
+<p>
+    @*//   @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |*@
+    @Html.ActionLink("Retour vers la liste des évaluations360", "Index")
+</p>
