@@ -78,6 +78,7 @@
                                     </td>
                                     <td>
                                         <center>
+                                            <a href="@Url.Action( "Create","Invitation", new { id=item.id })" class="mb-sm btn btn-success"><em class="fa fa-plus"></em></a>
                                             <a href="@Url.Action( "Edit","formations", new { id=item.id })" class="mb-sm btn btn-warning"><em class="fa fa-cog"></em></a>
 
                                             <a onclick="Delet(@item.id,'@item.titre')" class="mb-sm btn btn-danger"><em class="icon-trash"></em></a>

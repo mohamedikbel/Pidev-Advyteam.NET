@@ -17,11 +17,13 @@ namespace web.Controllers
         public FormationService db;
 
         public FormateurService fs;
+        public SkillsService ss;
 
         public formationsController()
         {
             db = new FormationService();
             fs = new FormateurService();
+            ss = new SkillsService();
         }
         // GET: formations
         public ActionResult Index()
@@ -42,6 +44,7 @@ namespace web.Controllers
                 new SelectListItem { Text = "Conference", Value="Conference" },
             };
             ViewBag.lst = lst;
+           
             return View();
         }
 
@@ -55,8 +58,11 @@ namespace web.Controllers
             if (ModelState.IsValid   )
             {
                 int i = DateTime.Compare(formation.date_debut.Value, formation.date_fin.Value);
-                if(i < 0)
+                if(i <= 0)
                 {
+                    formation.skills.Add(ss.GetById(1));
+                    
+                    
                     db.Add(formation);
                     db.Commit();
                     TempData["SM"] = "Ajouter Avec Success";
@@ -110,7 +116,7 @@ namespace web.Controllers
             if (ModelState.IsValid )
             {
                 int i = DateTime.Compare(formation.date_debut.Value, formation.date_fin.Value);
-                if(i < 0)
+                if(i <= 0)
                 {
                     db.Update(formation);
                     db.Commit();

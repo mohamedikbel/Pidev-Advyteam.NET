@@ -54,6 +54,8 @@ namespace domain.entities
 
         public virtual formateur formateur { get; set; }
 
+     
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<invetation> invetation { get; set; }
 

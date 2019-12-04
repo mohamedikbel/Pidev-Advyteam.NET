@@ -1,0 +1,164 @@
+﻿@model domain.entities.invetation
+
+@{
+    ViewBag.Title = "Invitation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <!-- Page content-->
+    <div class="content-wrapper">
+        <div class="content-heading">Ajouter Formation</div>
+        <!-- Zero Configuration-->
+        <div class="panel panel-default">
+            <div class="panel-heading ">
+                <a href="@Url.Action("Index", "formations")" class="btn btn-labeled btn-default">
+                    <span class="btn-label">
+                        <i class="fa fa-arrow-left"></i>
+                    </span> PRECEDENT
+                </a>
+            </div>
+            <div class="panel-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>invetation</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @Html.HiddenFor(model => model.etat_Invitation)
+
+                        @Html.HiddenFor(model => model.vu)
+                        @Html.HiddenFor(model => model.idFormation)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idEmploye, "Employer", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("idEmploye", null, htmlAttributes: new { @class = "form-control", @onchange = "Change(this.value)" })
+                                @Html.ValidationMessageFor(model => model.idEmploye, "Selctioner Employer", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="row">
+                            <div Style="font-family: Corbel; font-size: small ;text-align:center " class="col-md-6">
+                                <div style="width:100%;height:100%">
+                                    <canvas id="myChart1" style="padding: 0;margin: auto;display: block; "> </canvas>
+                                </div>
+                            </div>  
+
+                            <div Style="font-family: Corbel; font-size: small ;text-align:center " class="col-md-6">
+                                <div style="width:100%;height:100%">
+                                    <canvas id="myChart2" style="padding: 0;margin: auto;display: block; "> </canvas>
+                                </div>
+                            </div>  
+                        </div>
+                       
+
+                        <hr />
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="mb-sm btn btn-success "><em class="fa fa-Plus">Invite</em></button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+
+        function Change(id)
+        {
+            $.ajax({
+                type: "get",
+                url: "/Invitation/chartA/" + id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (chData) {
+                    var aData = chData;
+                    var aLabels = aData[0];
+                    var aDatasets1 = aData[1];
+                    var dataT = {
+                        labels: aLabels,
+                        datasets: [{
+                            label: "Taches",
+                            data: aDatasets1,
+                            fill: false,
+                            backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                            borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                            borderWidth: 1
+                        }]
+                    };
+                    var ctx = $("#myChart1").get(0).getContext("2d");
+                    var myNewChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: dataT,
+                        options: {
+                            responsive: true,
+                            title: { display: true, text: 'Duree Reelle de tache ' },
+                            legend: { position: 'bottom' },
+                            scales: {
+                                xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                                yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                            },
+                        }
+                    });
+                }
+            });
+            setTimeout(function () {
+
+                $.ajax({
+                    type: "get",
+                    url: "/Invitation/chartB/" + id,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (chData) {
+                        var aData = chData;
+                        var aLabels = aData[0];
+                        var aDatasets1 = aData[1];
+                        var dataT = {
+                            labels: aLabels,
+                            datasets: [{
+                                label: "Taches",
+                                data: aDatasets1,
+                                fill: false,
+                                backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                                borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                                borderWidth: 1
+                            }]
+                        };
+                        var ctx = $("#myChart2").get(0).getContext("2d");
+                        var myNewChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: dataT,
+                            options: {
+                                responsive: true,
+                                title: { display: true, text: 'Duree Estime de tache' },
+                                legend: { position: 'bottom' },
+                                scales: {
+                                    xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                                    yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                                },
+                            }
+                        });
+                    }
+                });
+
+            }, 1000);
+          
+        }
+
+       
+
+  
+</script> 
+}

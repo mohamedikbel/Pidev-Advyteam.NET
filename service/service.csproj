@@ -66,11 +66,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="EmployerService.cs" />
     <Compile Include="FormateurService.cs" />
     <Compile Include="FormationService.cs" />
+    <Compile Include="IEmployerService.cs" />
     <Compile Include="IFormateurService.cs" />
     <Compile Include="IFormationService.cs" />
+    <Compile Include="IInvetationService.cs" />
+    <Compile Include="InvitationServiice.cs" />
+    <Compile Include="ISkillsService.cs" />
+    <Compile Include="ITacheService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkillsService.cs" />
+    <Compile Include="TacheService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
