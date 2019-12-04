@@ -1,0 +1,63 @@
+﻿@model IEnumerable<domain.evaluation>
+
+@{
+    ViewBag.Title = "Affectercritere";
+}
+
+<h2>Affectercritere</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.employe.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Launch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Traiter)
+        </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.datedebut)*@ Date début de l'évaluation
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.description)*@ Description de l'évaluation
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.nom)*@le nom de l'évaluation
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.result) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.employe.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Launch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Traiter)
+        </td>*@
+        <td>
+         @item.datedebut
+        </td>
+        <td>
+            @item.description
+        </td>
+        <td>
+         @item.nom
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<domain.commentaire>
+
+@{
+    ViewBag.Title = "Mes commentaires";
+}
+
+<h2>La liste de mes commentaires</h2>
+<div class="dataTables_filter" id="dataTable_filter">
+    <label>
+        Rechercher:
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Chercher commentaire .." title="Type in a name of Claim">
+
+
+    </label>
+    </div>
+    <table class="table"  id="dataTable">
+        <tr>
+            <th>
+                Le nom de l'employé concerné
+            </th>
+            <th>
+                votre commentaire
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        { 
+            <tr>
+                <td>
+
+@*@Html.DisplayFor(modelItem => item.employe.nom)*@
+                  @Html.DisplayFor(modelItem => item.evaluation360.employe.nom)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.comment)
+
+
+                </td>
+
+
+
+
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.id }) |
+                    @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+        @Html.ActionLink("Retour", "Index")
+
+
+    </table>
+<script>
+
+
+                //fonction recherche par nom ajax
+                function myFunction() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("dataTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        td = tr[i].getElementsByTagName("td")[1];
+
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+
+
+</script>

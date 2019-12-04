@@ -1,0 +1,43 @@
+﻿@model domain.critere
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Êtes-vous sûr de vouloir supprimer ce critére?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+     
+
+        <dt>Description
+        </dt>
+@foreach (var item in ViewBag.result)
+{
+        <dd>
+            @item.description
+        </dd>}
+
+        <dt>
+Niveau        
+            dt>
+
+            @foreach (var item1 in ViewBag.result)
+            {
+            <dd>
+                @item1.niveau
+            </dd>}       
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Effectuer supression" class="btn btn-default" /> <br />
+            @Html.ActionLink("Retour vers la listes des critéres", "Index")
+        </div>
+    }
+</div>

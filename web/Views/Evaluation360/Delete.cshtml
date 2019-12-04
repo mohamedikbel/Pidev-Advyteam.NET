@@ -1,0 +1,31 @@
+﻿@model domain.evaluation360
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>etes vous sur de vouloir supprimer cette évaluation ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.datedebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datedebut)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+            <h5>@Html.ActionLink("Retour vers la liste des évaluations360", "Index")</h5>
+        </div>
+    }
+</div>

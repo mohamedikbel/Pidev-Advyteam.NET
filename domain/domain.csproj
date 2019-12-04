@@ -105,11 +105,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="commentaire.cs" />
+    <Compile Include="critere.cs" />
     <Compile Include="entities\commentaire.cs" />
     <Compile Include="entities\document.cs" />
     <Compile Include="entities\employe.cs" />
     <Compile Include="entities\Model1.cs" />
     <Compile Include="entities\post.cs" />
+    <Compile Include="evaluation.cs" />
+    <Compile Include="evaluation360.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,43 @@
+﻿@model domain.commentaire
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>Etes vous sure de vouloir supprimer ce commentaire ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+Nom de l'employé consacré de l'évaluation        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employe.nom)
+        </dd>
+
+        <dt>
+Date de lancement de l'évaluation        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.evaluation360.datedebut)
+        </dd>
+
+        <dt>
+Votre commentaire        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comment)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retour", "IndexByEmp")
+        </div>
+    }
+</div>

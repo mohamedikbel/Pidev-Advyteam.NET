@@ -1,0 +1,47 @@
+﻿@model IEnumerable<domain.critere>
+
+@{
+    ViewBag.Title = "Liste des critéres";
+
+}
+
+<h2>BIENVENUE @ViewBag.nom dans votre espace administrateur</h2>
+<br />
+<h4>@Html.ActionLink("Se déconnecter", "logout")</h4>
+<h4>
+    @Html.ActionLink("Créer un nouveau critére", "Create")<br />
+    @Html.ActionLink("Traiter une évaluation 360", "traiter")
+
+
+</h4>
+<table class="table">
+    <tr>
+    
+        <th>
+        Description
+        </th>
+        <th>
+            Niveau         </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in ViewBag.result) {
+    <tr>
+
+        <td>@item.description
+</td>
+        <td>@item.niveau</td>
+
+
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new {id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.evaluation.id }) |
+            @Html.ActionLink("Supprimer", "Delete",new{ id = item.id })
+            @*@Html.ActionLink("Affecter le critére a une évaluation", "Affectercritere", new { id = item.id })*@
+
+
+        </td>
+    </tr>
+}
+
+</table>
