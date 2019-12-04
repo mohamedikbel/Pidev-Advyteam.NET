@@ -1,4 +1,5 @@
 ﻿using domain;
+using PagedList;
 using PidevFinal.data.Infrastructure;
 using servicePattern;
 using System;
@@ -16,22 +17,24 @@ namespace web.Controllers
     {
         IDatabaseFactory Factory = new DatabaseFactory();
 
-       public System.Web.SessionState.HttpSessionState Session { get; }
+        public System.Web.SessionState.HttpSessionState Session { get; }
 
-   
-    // GET: Commentaire
-    public ActionResult Index()
+
+        // GET: Commentaire
+        public ActionResult Index(int? page)
         {
             String idemp = (string)System.Web.HttpContext.Current.Session["id"].ToString();
             int x = int.Parse(idemp);
             ViewBag.idemploye = x;
             ViewBag.idemp = x;
 
-            List<evaluation360> appo = new List<evaluation360>();
+
+
+            // List<evaluation360> appo = new List<evaluation360>();
             IUnitOfWork Uok = new UnitOfWork(Factory);
             IService<evaluation360> jbService = new Service<evaluation360>(Uok);
 
-            appo = jbService.GetAll().ToList();
+            var appo = jbService.GetAll().ToList().ToPagedList(page ?? 1, 3);
 
 
             return View(appo);
@@ -81,7 +84,8 @@ namespace web.Controllers
             List<commentaire> appo = new List<commentaire>();
             appo = jbService.GetAll().ToList();
             for (int i = appo.Count - 1; i >= 0; i--)
-            { if (appo[i].commentaireEvzl360_id == id && appo[i].employecommentaire_id == idemp)
+            {
+                if (appo[i].commentaireEvzl360_id == id && appo[i].employecommentaire_id == idemp)
                     return View("Exist");
 
             }
@@ -178,7 +182,7 @@ namespace web.Controllers
         public ActionResult IndexByEmp(int idemploye)
         {
 
-        IUnitOfWork Uok = new UnitOfWork(Factory);
+            IUnitOfWork Uok = new UnitOfWork(Factory);
             IService<commentaire> jbService = new Service<commentaire>(Uok);
             IService<employe> serviceemploye = new Service<employe>(Uok);
 
@@ -186,10 +190,10 @@ namespace web.Controllers
             String idemp = (string)System.Web.HttpContext.Current.Session["id"].ToString();
 
             int x = int.Parse(idemp);
-          //  ViewBag.idemploye = 2;
+            //  ViewBag.idemploye = 2;
             if (x != 0)
             {
-              
+
                 List<commentaire> appo = new List<commentaire>();
                 List<commentaire> j = new List<commentaire>();
                 appo = jbService.GetAll().ToList();
@@ -225,14 +229,15 @@ namespace web.Controllers
             for (int i = evalall.Count - 1; i >= 0; i--)
             {
                 if (evalall[i].evaluationEmploye360_id == idemploye)
-                    evallist.Add(evalall[i]); }
+                    evallist.Add(evalall[i]);
+            }
             for (int j = appo.Count - 1; j >= 0; j--)
             {
                 for (int k = evallist.Count - 1; k >= 0; k--)
                 {
                     if (appo[j].commentaireEvzl360_id == evallist[k].id)
                         x++;
-                  //  ViewBag.t = x;
+                    //  ViewBag.t = x;
                 }
 
 
@@ -252,5 +257,5 @@ namespace web.Controllers
         }
     }
 
-    }
+}
 
