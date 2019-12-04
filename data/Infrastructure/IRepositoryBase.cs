@@ -5,14 +5,14 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyFinance.Data.Infrastructure
+namespace data.Infrastructure
 {
   public interface IRepositoryBase<T>where T:class
     {
         //crud
         void Add(T Entity);
         T GetById(int id);
-        T GetById(string id);
+        T GetByName(string id);
         IEnumerable<T> GetMany(Expression<Func<T,bool>>Condition=null,
             Expression<Func<T, bool>>orderBy=null);//list conditionné
         void Update(T Entity);

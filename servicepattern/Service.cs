@@ -1,13 +1,13 @@
-﻿using Service.Pattern;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
-using MyFinance.Data.Infrastructure;
+using data.Infrastructure;
 
-namespace Service.Pattern
+namespace servicepattern
 {
     public class Service<T> : IService<T> where T : class
     {
@@ -42,9 +42,9 @@ namespace Service.Pattern
             utk.Dispose();
         }
 
-        public T GetById(string id)
+        public T GetByName(string id)
         {
-            return utk.GetRepositoryBase<T>().GetById(id);
+            return utk.GetRepositoryBase<T>().GetByName(id);
         }
 
         public T GetById(int id)

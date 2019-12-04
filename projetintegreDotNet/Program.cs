@@ -10,6 +10,8 @@ namespace projetintegreDotNet
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("jjjjj");
+            Console.ReadLine();
         }
     }
 }

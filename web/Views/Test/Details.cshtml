@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Details Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <!-- Page content-->
+    <div class="content-wrapper">
+        <div class="content-heading">@ViewBag.t.description</div>
+        <!-- Zero Configuration-->
+        <div class="panel panel-default">
+            <div class="panel-heading ">
+            <a href="@Url.Action("Index", "Test")" class="btn btn-labeled btn-default">
+                <span class="btn-label">
+                    <i class="fa fa-arrow-left"></i>
+                </span> PRECEDENT
+            </a> | Toutes les Questions
+           </div>
+            <div class="panel-body">
+                
+               
+              
+                
+                <div class="row">
+                    <div class="col-md-4"></div><a href="@Url.Action( "Create", "Question", new { id=@ViewBag.t.id })" class="mb-sm btn btn-inverse  col-4"><em class="fa fa-pencil-square-o"> Ajouter Question</em></a>
+                </div>
+                <hr />
+                <div class="table-responsive b0">
+                    <table id="datatable1" class="table table-striped table-hover">
+                        <thead>
+                             <tr>
+                                   <th><center>Question</center></th>
+                                        <th><center>Type</center></th>
+                                        <th><center>Action</center></th>
+                                    </tr>
+                        </thead>
+                                <tbody>
+
+                                    @foreach (var item in ViewBag.lsq)
+                                    {
+                                        <tr>
+                                            <td><center>@item.libelle</center></td>
+                                            <td><center>@item.type</center></td>
+                                            <td>
+                                                <center>
+                                                    <a href="@Url.Action("Edit", "Question", new { id=@item.id })" class="mb-sm btn btn-warning"><em class="fa fa-cog"></em></a>
+                                                    <a href="@Url.Action("Details", "Question", new { id=@item.id })" class="mb-sm btn btn-info"><em class="icon-magnifier"></em></a>
+                                                    <a onclick="Delet(@item.id)" class="mb-sm btn btn-danger"><em class="icon-trash"></em></a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section scripts{
+
+    <script>
+                                    $(function () {
+                                        var sm = '@TempData["SM"]';
+                                        if (sm != '')
+                                            alertify.success(sm);
+                                    })
+
+                                    function Delet(id)
+                                    {
+                                        alertify.confirm('supression de question','Vous Voulez vraiment supprimer cette question ? ',function(){
+                                            window.location.href = ' @Url.Action("Delete", "Question")/'+id+'/'+@ViewBag.t.id;
+                                        },null)
+                                    }
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+

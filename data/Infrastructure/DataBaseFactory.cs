@@ -6,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyFinance.Data.Infrastructure
+namespace data.Infrastructure
 {
     public class DataBaseFactory :Disposable,IDataBaseFactory
     {
-        private Model1 ctx;
+        private Context ctx;
         public DataBaseFactory()
         {
-            ctx = new Model1();
+            ctx = new Context();
         }
-        public Model1 DataContext
+        public Context DataContext
         {
             get
             {

@@ -29,5 +29,13 @@ namespace web.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<domain.entities.reponce> reponces { get; set; }
+
+        public System.Data.Entity.DbSet<domain.entities.question> questions { get; set; }
+
+        public System.Data.Entity.DbSet<domain.entities.test> tests { get; set; }
+
+        public System.Data.Entity.DbSet<domain.entities.formateur> formateurs { get; set; }
     }
 }

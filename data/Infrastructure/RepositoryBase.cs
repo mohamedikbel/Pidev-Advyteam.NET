@@ -8,11 +8,11 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyFinance.Data.Infrastructure
+namespace data.Infrastructure
 {
   public  class RepositoryBase<T>:IRepositoryBase<T>where T: class
     {
-        Model1 ctx;
+        Context ctx;
     readonly IDbSet<T> dbset;
         public RepositoryBase(IDataBaseFactory Factory)
         {
@@ -45,7 +45,7 @@ namespace MyFinance.Data.Infrastructure
             dbset.Remove(Entity);
         }
 
-        public T GetById(string id)
+        public T GetByName(string id)
         {
             return dbset.Find(id);
         }

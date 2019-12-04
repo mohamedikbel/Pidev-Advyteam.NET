@@ -12,7 +12,7 @@ namespace domain.entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public document()
         {
-            employes = new HashSet<employe>();
+            employe = new HashSet<employe>();
         }
 
         public int id { get; set; }
@@ -21,6 +21,6 @@ namespace domain.entities
         public string nomdoc { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<employe> employes { get; set; }
+        public virtual ICollection<employe> employe { get; set; }
     }
 }

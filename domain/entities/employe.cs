@@ -12,14 +12,17 @@ namespace domain.entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public employe()
         {
-            commentaires = new HashSet<commentaire>();
-            documents = new HashSet<document>();
+            invetation = new HashSet<invetation>();
+            tache = new HashSet<tache>();
+            formation = new HashSet<formation>();
+            document = new HashSet<document>();
         }
 
-        public int id { get; set; }
+        [Key]
+        public int EM_Id { get; set; }
 
         [StringLength(255)]
-        public string password { get; set; }
+        public string EM_Password { get; set; }
 
         [StringLength(255)]
         public string codeqr { get; set; }
@@ -29,8 +32,8 @@ namespace domain.entities
         [StringLength(255)]
         public string email { get; set; }
 
-        [StringLength(255)]
-        public string image { get; set; }
+        [Column(TypeName = "bit")]
+        public bool? isActif { get; set; }
 
         [StringLength(255)]
         public string nom { get; set; }
@@ -41,16 +44,16 @@ namespace domain.entities
         [StringLength(255)]
         public string role { get; set; }
 
-        [StringLength(255)]
-        public string numtel { get; set; }
-
-        [StringLength(255)]
-        public string qrlogin { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<invetation> invetation { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<commentaire> commentaires { get; set; }
+        public virtual ICollection<tache> tache { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<document> documents { get; set; }
+        public virtual ICollection<formation> formation { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<document> document { get; set; }
     }
 }
