@@ -70,9 +70,7 @@ namespace web.Controllers
             return View();
         }
 
-        // POST: formateurs/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create( formateur f, HttpPostedFileBase file)
@@ -101,7 +99,7 @@ namespace web.Controllers
             return View();
         }
 
-        // GET: formateurs/Edit/5
+       
         public ActionResult Edit( int id)
         {
             
@@ -114,7 +112,7 @@ namespace web.Controllers
             return View(formateusr);
         }
 
-        // POST: formateurs/Edit/5
+        
         
         [HttpPost]
         [ValidateAntiForgeryToken]
