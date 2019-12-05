@@ -1,13 +1,16 @@
-﻿@model IEnumerable<domain.evaluation360>
-
+﻿@model IPagedList<domain.evaluation360>
+@using PagedList
+@using PagedList.Mvc
 @{
     ViewBag.Title = "établir vos commentaire sur vos cammarades ";
+    Layout = "~/Views/Shared/_LayoutAdvyteamEmploye.cshtml";
+
 }
 
 <h2>Affichage des évaluation 360</h2>
 
 <h5>@Html.ActionLink("Consulter Mes commentaires", "IndexByEmp", new { idemploye = @ViewBag.idemploye })</h5>
-<h5>@Html.ActionLink("Retour vers page d'acceuil", "eval360")</h5>
+@*<h5>@Html.ActionLink("Retour vers page d'acceuil", "eval360")</h5>*@
 
 <div class="dataTables_filter" id="dataTable_filter">
     <label>
@@ -16,46 +19,45 @@
 
 
     </label>
-   
+
 
 </div>
 
-<table class="table" id="dataTable" >
+<table class="table" id="dataTable">
     <tr>
         <th>
-            Employé concérné de l'évaluation        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.datedebut)
+            Employé concérné de l'évaluation
         </th>
-        <th>nb
-</th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().datedebut)
+        </th>
+        <th>
+            Nombre de commentaire éffectué sur l'employé
+        </th>
     </tr>
 
 
-@foreach (var item in Model)
-{
-    
-    <tr>
- @{var warining = web.Controllers.CommentaireController.compternbeval(item.employe.id); }
-@*@{var empconnecte = web.Controllers.EmployeeController.employeId(item.employe); }*@
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            @{var warining = web.Controllers.CommentaireController.compternbeval(item.employe.id); }
+            @*@{var empconnecte = web.Controllers.EmployeeController.employeId(item.employe); }*@
 
 
-        <td>
-            @Html.DisplayFor(modelItem => item.employe.nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.datedebut)
-        </td>
-        <td>
-            @warining
-    </td>
-        <td>
-            @Html.ActionLink("Détail de l'employé", "Details", new { id= item.employe.id }) |
-            @Html.ActionLink("Ajouter votre propre avis ", "Create", new { id = item.id, idemp=@ViewBag.idemploye })
-            @*@Html.ActionLink("consulter nombre de commentaire ", "compternbeval", new { idemploye = item.employe.id })*@
-
-
-
+            <td>
+                @Html.DisplayFor(modelItem => item.employe.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datedebut)
+            </td>
+            <td>
+                @warining
+            </td>
+            <td>
+                @Html.ActionLink("Détail de l'employé", "Details", new { id = item.employe.id }) |
+                @Html.ActionLink("Ajouter votre propre avis ", "Create", new { id = item.id, idemp = @ViewBag.idemploye })
+                @*@Html.ActionLink("consulter nombre de commentaire ", "compternbeval", new { idemploye = item.employe.id })*@
 
 
 
@@ -63,10 +65,13 @@
 
 
 
-        </td>
-    </tr>
-   
-}
+
+
+
+            </td>
+        </tr>
+
+                }
 
 </table>
 <script>
@@ -96,3 +101,6 @@
 
 
 </script>
+<div class="pagedList">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.TwitterBootstrapPagerAligned)
+</div>
