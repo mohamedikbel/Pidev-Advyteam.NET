@@ -8,5 +8,6 @@ namespace service
 {
     class Employe
     {
+        public int MyProperty { get; set; }
     }
 }

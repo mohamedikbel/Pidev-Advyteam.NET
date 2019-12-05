@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Employe.cs" />
     <Compile Include="EmployeService.cs" />
     <Compile Include="IEmployeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
