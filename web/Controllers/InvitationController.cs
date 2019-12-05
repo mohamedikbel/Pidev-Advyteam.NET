@@ -21,19 +21,19 @@ namespace web.Controllers
             Es = new EmployeeService();
             Ts = new TacheService();
         }
-        // GET: Invitation
+       
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Invitation/Details/5
+       
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Invitation/Create
+       
         public ActionResult Create(int id)
         {
             invetation i = new invetation()
@@ -48,7 +48,7 @@ namespace web.Controllers
             return View(i);
         }
 
-        // POST: Invitation/Create
+       
         [HttpPost]
         public ActionResult Create(invetation i )
         {
@@ -68,50 +68,15 @@ namespace web.Controllers
 
         }
 
-        // GET: Invitation/Edit/5
+        
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Invitation/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Invitation/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Invitation/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        
+        
+       
        
         public JsonResult chartA(int id)
         {
