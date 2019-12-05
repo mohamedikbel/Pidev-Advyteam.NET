@@ -27,7 +27,7 @@ namespace web.Controllers
             ss = new SkillsService();
             Is = new InvitationServiice();
         }
-        // GET: formations
+        
         public ActionResult Index()
         {
             
@@ -36,7 +36,7 @@ namespace web.Controllers
 
        
 
-        // GET: formations/Create
+        
         public ActionResult Create()
         {
             ViewBag.v = "";
@@ -86,7 +86,7 @@ namespace web.Controllers
             return View(formation);
         }
 
-        // GET: formations/Edit/5
+        
         public ActionResult Edit(int id)
         {
             if (id == null)
@@ -143,7 +143,7 @@ namespace web.Controllers
             return View(formation);
         }
 
-        // GET: formations/Delete/5
+       
         public ActionResult Delete(int id)
         {
             if (id == null)

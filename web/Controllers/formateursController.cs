@@ -35,7 +35,7 @@ namespace web.Controllers
         {
           List<formateur> Form = new List<formateur>();
 
-           // Form = formateurS.GetAll().ToList();
+           
            Form= formateurS.MaxNote();
             List<formateur> Forms = new List<formateur>();
            
@@ -174,7 +174,7 @@ namespace web.Controllers
 
 
 
-            //var Names = em.Select(x => x.nom).Distinct();
+            
 
 
 
