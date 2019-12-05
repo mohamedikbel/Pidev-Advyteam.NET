@@ -13,7 +13,7 @@ namespace web.Controllers
     {
        
 
-        // GET: Question/Details/5
+        
         public ActionResult Details(int id)
         {
             HttpResponseMessage response = GlobalVariable.webApiClient.GetAsync("test/Quest/get/" + id.ToString()).Result;
@@ -26,7 +26,7 @@ namespace web.Controllers
             return View();
         }
 
-        // GET: Question/Create
+        
         public ActionResult Create(int id)
         {
             List<SelectListItem> lst = new List<SelectListItem>() {
@@ -41,7 +41,7 @@ namespace web.Controllers
             return View(q);
         }
 
-        // POST: Question/Create
+       
         [HttpPost]
         public ActionResult Create(questionView q)
         {
@@ -60,7 +60,7 @@ namespace web.Controllers
 
         }
 
-        // GET: Question/Edit/5
+        
         public ActionResult Edit(int id)
         {
             List<SelectListItem> lst = new List<SelectListItem>() {
@@ -74,7 +74,7 @@ namespace web.Controllers
             return View(q);
         }
 
-        // POST: Question/Edit/5
+        
         [HttpPost]
         public ActionResult Edit(questionView q)
         {
@@ -89,7 +89,7 @@ namespace web.Controllers
             });
         }
 
-        // GET: Question/Delete/5
+        
         public ActionResult Delete(int idq , int idt)
         {
             HttpResponseMessage response = GlobalVariable.webApiClient.DeleteAsync("test/Quest/" + idq.ToString()).Result;
