@@ -64,7 +64,7 @@ namespace web.Controllers
 
        
 
-        // GET: formateurs/Create
+        
         public ActionResult Create()
         {
             return View();
@@ -131,7 +131,7 @@ namespace web.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: formateurs/Delete/5
+        
         public ActionResult Delete(int id)
         {
            
